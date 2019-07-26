@@ -12,5 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+
+Route::post('/loginVerify', 'LoginVerify@login');
+Route::post('/logout', 'Logout@index');
+
+Route::group(['middleware' => 'App\Http\Middleware\DashboardMiddleWare'], function()
+{
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
 });
